@@ -760,28 +760,19 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: <Widget>[
-            AbsorbPointer(
-              // this is a hidden textfield under the pin code fields.
-              absorbing: true, // it prevents on tap on the text field
-              child: widget.useExternalAutoFillGroup
-                  ? textField
-                  : AutofillGroup(
-                      onDisposeAction: widget.onAutoFillDisposeAction,
-                      child: textField,
-                    ),
-            ),
+            widget.useExternalAutoFillGroup
+                ? textField
+                : AutofillGroup(
+                    onDisposeAction: widget.onAutoFillDisposeAction,
+                    child: textField,
+                  ),
             Positioned(
               top: 0,
               left: 0,
               right: 0,
-              child: GestureDetector(
-                onTap: () {
-                  FocusScope.of(context).requestFocus(FocusNode());
-                },
-                child: Row(
-                  mainAxisAlignment: widget.mainAxisAlignment,
-                  children: _generateFields(),
-                ),
+              child: Row(
+                mainAxisAlignment: widget.mainAxisAlignment,
+                children: _generateFields(),
               ),
             ),
           ],
