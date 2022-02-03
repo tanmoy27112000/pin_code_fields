@@ -774,29 +774,9 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
               top: 0,
               left: 0,
               right: 0,
-              child: GestureDetector(
-                onTap: () {
-                  if (widget.onTap != null) widget.onTap!();
-                  _onFocus();
-                },
-                onLongPress: widget.enabled
-                    ? () async {
-                        var data = await Clipboard.getData("text/plain");
-                        if (data?.text?.isNotEmpty ?? false) {
-                          if (widget.beforeTextPaste != null) {
-                            if (widget.beforeTextPaste!(data!.text)) {
-                              _showPasteDialog(data.text!);
-                            }
-                          } else {
-                            _showPasteDialog(data!.text!);
-                          }
-                        }
-                      }
-                    : null,
-                child: Row(
-                  mainAxisAlignment: widget.mainAxisAlignment,
-                  children: _generateFields(),
-                ),
+              child: Row(
+                mainAxisAlignment: widget.mainAxisAlignment,
+                children: _generateFields(),
               ),
             ),
           ],
