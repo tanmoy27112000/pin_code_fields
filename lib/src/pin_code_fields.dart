@@ -446,7 +446,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
                 () => widget.onCompleted!(currentText));
           }
 
-          if (widget.autoDismissKeyboard) _focusNode!.unfocus();
+          // if (widget.autoDismissKeyboard) _focusNode!.unfocus();
         }
         widget.onChanged(currentText);
       }
@@ -774,9 +774,14 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
               top: 0,
               left: 0,
               right: 0,
-              child: Row(
-                mainAxisAlignment: widget.mainAxisAlignment,
-                children: _generateFields(),
+              child: GestureDetector(
+                onTap: () {
+                  print("tapped");
+                },
+                child: Row(
+                  mainAxisAlignment: widget.mainAxisAlignment,
+                  children: _generateFields(),
+                ),
               ),
             ),
           ],
@@ -852,17 +857,6 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
       );
     }
     return result;
-  }
-
-  void _onFocus() {
-    if (_focusNode!.hasFocus &&
-        MediaQuery.of(widget.appContext).viewInsets.bottom == 0) {
-      _focusNode!.unfocus();
-      Future.delayed(
-          const Duration(microseconds: 1), () => _focusNode!.requestFocus());
-    } else {
-      _focusNode!.requestFocus();
-    }
   }
 
   void _setTextToInput(String data) async {
