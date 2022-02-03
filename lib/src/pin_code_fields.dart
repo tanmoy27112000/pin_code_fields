@@ -776,7 +776,7 @@ class _PinCodeTextFieldState extends State<PinCodeTextField>
               right: 0,
               child: GestureDetector(
                 onTap: () {
-                  print("tapped");
+                  FocusScope.of(context).requestFocus(FocusNode());
                 },
                 child: Row(
                   mainAxisAlignment: widget.mainAxisAlignment,
